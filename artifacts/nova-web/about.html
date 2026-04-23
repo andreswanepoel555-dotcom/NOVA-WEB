@@ -3,23 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Nova Web Solutions</title>
-  <meta name="description" content="Learn about Nova Web Solutions — a digital studio engineering trust, expertise and measurable results." />
+  <title>About Nova Web Solutions | Web Designer South Africa</title>
+  <meta name="description" content="Nova Web Solutions is a results-driven web design agency in South Africa. Learn about our team, our values and the work we do for ambitious brands." />
+  <meta name="keywords" content="about Nova Web Solutions, web design agency South Africa, web designer South Africa, digital agency Johannesburg" />
+  <meta name="author" content="Nova Web Solutions" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.novawebsolutions.io/about.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About Nova Web Solutions | Web Designer South Africa" />
+  <meta property="og:description" content="Trust, expertise and measurable results — meet the studio behind Nova Web Solutions." />
+  <meta property="og:url" content="https://www.novawebsolutions.io/about.html" />
+  <meta property="og:site_name" content="Nova Web Solutions" />
+  <meta property="og:image" content="https://www.novawebsolutions.io/opengraph.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <meta name="theme-color" content="#050608" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="./index.html" class="logo">
+      <a href="./index.html" class="logo" aria-label="Nova Web Solutions home">
         <span class="logo-nova">NOVA</span><span class="logo-web">WEB</span><span class="logo-dot">.</span>
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav-links" id="navLinks">
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
         <a href="./index.html">Home</a>
         <a href="./about.html" class="active">About</a>
         <a href="./services.html">Services</a>
@@ -29,105 +47,127 @@
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="hero-bg">
-      <div class="grid-overlay"></div>
-      <div class="orb orb-1"></div>
-    </div>
-    <div class="container reveal">
-      <span class="eyebrow">// About Us</span>
-      <h1>Trusted by founders. <span class="accent glow">Loved by users.</span></h1>
-      <p class="lead">
-        Nova Web Solutions is a results-driven digital studio. We help ambitious brands
-        launch, grow and scale through engineering-grade web design.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container two-col">
-      <div class="reveal">
-        <span class="eyebrow">// Our Story</span>
-        <h2>Built on craft, powered by results</h2>
-        <p>
-          Founded in 2019, Nova Web Solutions began as a small collective of designers and
-          developers who believed the web deserved better. Today we partner with clients
-          across multiple continents — from agile startups to established enterprises —
-          delivering digital products that look stunning and perform under pressure.
-        </p>
-        <p>
-          Every project begins with a conversation. We listen, research, and then build
-          with intention. No bloated frameworks, no shortcuts — just clean code, sharp
-          design and strategy that ships.
+  <main id="main">
+    <section class="page-hero">
+      <div class="hero-bg">
+        <div class="grid-overlay"></div>
+        <div class="orb orb-1" aria-hidden="true"></div>
+        <div class="scan-line" aria-hidden="true"></div>
+      </div>
+      <div class="container reveal">
+        <span class="eyebrow">// About Us</span>
+        <h1>Trusted by founders. <span class="accent glow">Loved by users.</span></h1>
+        <p class="lead">
+          Nova Web Solutions is a results-driven digital studio based in South Africa.
+          We help ambitious brands launch, grow and scale through engineering-grade web design.
         </p>
       </div>
-      <div class="stat-grid reveal">
-        <div class="stat-card">
-          <strong>120+</strong>
-          <span>Projects delivered</span>
-        </div>
-        <div class="stat-card">
-          <strong>7 yrs</strong>
-          <span>In business</span>
-        </div>
-        <div class="stat-card">
-          <strong>40+</strong>
-          <span>Active clients</span>
-        </div>
-        <div class="stat-card">
-          <strong>24/7</strong>
-          <span>Global support</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section section-dark">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">// Our Values</span>
-        <h2>What we believe in</h2>
-      </div>
-      <div class="cards">
-        <article class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/></svg>
-          </div>
-          <h3>Trust</h3>
-          <p>Transparent process, honest pricing and accountable delivery — every single time.</p>
-        </article>
-        <article class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 2 3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          </div>
-          <h3>Expertise</h3>
-          <p>Senior-level engineers and designers on every project. No juniors, no outsourcing.</p>
-        </article>
-        <article class="card reveal">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="m7 15 4-4 4 4 5-6"/></svg>
-          </div>
-          <h3>Results</h3>
-          <p>We measure success in conversions, growth and ROI — not vanity metrics.</p>
-        </article>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Web Design</span><i>✦</i>
+        <span>SEO</span><i>✦</i>
+        <span>Branding</span><i>✦</i>
+        <span>Digital Growth</span><i>✦</i>
+        <span>South Africa</span><i>✦</i>
+        <span>Website Maintenance</span><i>✦</i>
+        <span>Conversion Design</span><i>✦</i>
+        <span>Web Design</span><i>✦</i>
+        <span>SEO</span><i>✦</i>
+        <span>Branding</span><i>✦</i>
+        <span>Digital Growth</span><i>✦</i>
+        <span>South Africa</span><i>✦</i>
+        <span>Website Maintenance</span><i>✦</i>
+        <span>Conversion Design</span><i>✦</i>
       </div>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="container cta-band reveal">
-      <h2>Ready to build something <span class="accent glow">powerful</span>?</h2>
-      <a href="./contact.html" class="btn btn-primary">Start a Project</a>
-    </div>
-  </section>
+    <section class="section">
+      <div class="container two-col">
+        <div class="reveal">
+          <span class="eyebrow">// Our Story</span>
+          <h2>Built on craft, powered by results</h2>
+          <p>
+            Founded in 2019, Nova Web Solutions began as a small collective of designers and
+            developers who believed the South African web deserved better. Today we partner with clients
+            across multiple continents — from agile startups to established enterprises —
+            delivering digital products that look stunning and perform under pressure.
+          </p>
+          <p>
+            Every project begins with a conversation. We listen, research, and then build
+            with intention. No bloated frameworks, no shortcuts — just clean code, sharp
+            design and strategy that ships.
+          </p>
+        </div>
+        <div class="stat-grid reveal">
+          <div class="stat-card">
+            <strong>120+</strong>
+            <span>Projects delivered</span>
+          </div>
+          <div class="stat-card">
+            <strong>7 yrs</strong>
+            <span>In business</span>
+          </div>
+          <div class="stat-card">
+            <strong>40+</strong>
+            <span>Active clients</span>
+          </div>
+          <div class="stat-card">
+            <strong>24/7</strong>
+            <span>Global support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">// Our Values</span>
+          <h2>What we believe in</h2>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/></svg>
+            </div>
+            <h3>Trust</h3>
+            <p>Transparent process, honest pricing and accountable delivery — every single time.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 2 3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+            </div>
+            <h3>Expertise</h3>
+            <p>Senior-level engineers and designers on every project. No juniors, no outsourcing.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="m7 15 4-4 4 4 5-6"/></svg>
+            </div>
+            <h3>Results</h3>
+            <p>We measure success in conversions, growth and ROI — not vanity metrics.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cta-band reveal">
+        <h2>Ready to build something <span class="accent glow">powerful</span>?</h2>
+        <a href="./contact.html" class="btn btn-primary">Start a Project</a>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <a href="./index.html" class="logo">
+        <a href="./index.html" class="logo" aria-label="Nova Web Solutions home">
           <span class="logo-nova">NOVA</span><span class="logo-web">WEB</span><span class="logo-dot">.</span>
         </a>
-        <p class="footer-tag">Building powerful digital experiences since 2019.</p>
+        <p class="footer-tag">Building powerful digital experiences across South Africa since 2019.</p>
       </div>
       <div>
         <h4>Navigate</h4>

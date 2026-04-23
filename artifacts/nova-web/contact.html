@@ -3,23 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Nova Web Solutions</title>
-  <meta name="description" content="Get in touch with Nova Web Solutions. We respond within one business day." />
+  <title>Contact | Web Designer South Africa | Nova Web Solutions</title>
+  <meta name="description" content="Get in touch with Nova Web Solutions for web design, SEO, branding and website maintenance in South Africa. We respond within one business day." />
+  <meta name="keywords" content="contact web designer South Africa, web design quote South Africa, hire web designer Johannesburg, SEO consultation South Africa" />
+  <meta name="author" content="Nova Web Solutions" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.novawebsolutions.io/contact.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact Nova Web Solutions" />
+  <meta property="og:description" content="Tell us about your project. We respond within one business day." />
+  <meta property="og:url" content="https://www.novawebsolutions.io/contact.html" />
+  <meta property="og:image" content="https://www.novawebsolutions.io/opengraph.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <meta name="theme-color" content="#050608" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="./index.html" class="logo">
+      <a href="./index.html" class="logo" aria-label="Nova Web Solutions home">
         <span class="logo-nova">NOVA</span><span class="logo-web">WEB</span><span class="logo-dot">.</span>
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav-links" id="navLinks">
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
         <a href="./index.html">Home</a>
         <a href="./about.html">About</a>
         <a href="./services.html">Services</a>
@@ -29,56 +46,71 @@
     </div>
   </header>
 
-  <section class="page-hero">
-    <div class="hero-bg">
-      <div class="grid-overlay"></div>
-      <canvas id="particles"></canvas>
-    </div>
-    <div class="container reveal">
-      <span class="eyebrow">// Get In Touch</span>
-      <h1>Let's build something <span class="accent glow">powerful</span>.</h1>
-      <p class="lead">Tell us about your project and we'll get back to you within one business day.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container contact-wrap">
-      <div class="contact-copy reveal">
-        <span class="eyebrow">// Reach Us</span>
-        <h2>We'd love to hear from you</h2>
-        <p>Whether you have a fully-defined project or just an idea on a napkin — we're here to help shape it into something powerful.</p>
-        <ul class="contact-list">
-          <li><strong>Email</strong><span>hello@novawebsolutions.io</span></li>
-          <li><strong>Phone</strong><span>+1 (555) 010-2024</span></li>
-          <li><strong>Hours</strong><span>Mon – Fri, 9:00 – 18:00</span></li>
-          <li><strong>Studio</strong><span>Remote · Worldwide</span></li>
-        </ul>
+  <main id="main">
+    <section class="page-hero">
+      <div class="hero-bg">
+        <div class="grid-overlay"></div>
+        <canvas id="particles" aria-hidden="true"></canvas>
+        <div class="scan-line" aria-hidden="true"></div>
       </div>
-      <form class="form reveal" action="mailto:hello@novawebsolutions.io" method="post" enctype="text/plain">
-        <div class="field">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Your full name" />
+      <div class="container reveal">
+        <span class="eyebrow">// Get In Touch</span>
+        <h1>Let's build something <span class="powerful" data-text="powerful">powerful</span>.</h1>
+        <p class="lead">Tell us about your project and we'll get back to you within one business day.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-wrap">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">// Reach Us</span>
+          <h2>We'd love to hear from you</h2>
+          <p>Whether you have a fully-defined project or just an idea on a napkin — we're here to help shape it into something powerful.</p>
+          <ul class="contact-list">
+            <li><strong>Email</strong><span>hello@novawebsolutions.io</span></li>
+            <li><strong>Phone</strong><span>+27 (0) 11 010 2024</span></li>
+            <li><strong>Hours</strong><span>Mon – Fri, 09:00 – 18:00 SAST</span></li>
+            <li><strong>Studio</strong><span>South Africa · Remote Worldwide</span></li>
+          </ul>
         </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="you@company.com" />
-        </div>
-        <div class="field">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" required placeholder="Tell us about your project, timeline and goals..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
-    </div>
-  </section>
+
+        <form class="form reveal" id="contactForm" novalidate
+              action="https://formspree.io/f/your-id-here" method="post">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required minlength="2" placeholder="Your full name" autocomplete="name" />
+            <small class="field-error" data-for="name"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@company.com" autocomplete="email" />
+            <small class="field-error" data-for="email"></small>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required minlength="10" placeholder="Tell us about your project, timeline and goals..."></textarea>
+            <small class="field-error" data-for="message"></small>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="btn-label">Send Message</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+          <div class="form-success" role="status" aria-live="polite">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <p>Thanks — your message is on its way. We'll be in touch shortly.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <a href="./index.html" class="logo">
+        <a href="./index.html" class="logo" aria-label="Nova Web Solutions home">
           <span class="logo-nova">NOVA</span><span class="logo-web">WEB</span><span class="logo-dot">.</span>
         </a>
-        <p class="footer-tag">Building powerful digital experiences since 2019.</p>
+        <p class="footer-tag">Building powerful digital experiences across South Africa since 2019.</p>
       </div>
       <div>
         <h4>Navigate</h4>
