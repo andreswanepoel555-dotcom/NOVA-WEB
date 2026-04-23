@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Nova Web Solutions"
+version = "1.0.0"
+id = "artifacts/nova-web"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18228
+
+[services.development]
+run = "pnpm --filter @workspace/nova-web run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nova-web", "run", "build" ]
+publicDir = "artifacts/nova-web/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18228"
+BASE_PATH = "/"

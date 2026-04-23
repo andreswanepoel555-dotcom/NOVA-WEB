@@ -25,3 +25,7 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+- **nova-web** (`artifacts/nova-web`) — Static multi-page website for "Nova Web Solutions" (web design agency). Pure HTML/CSS/vanilla JS, no frameworks. Files: `index.html`, `about.html`, `services.html`, `portfolio.html`, `contact.html`, `styles.css`, `script.js`. Vite is used only as a dev/build server for multi-page entries — the HTML/CSS/JS files are fully exportable and host-anywhere.

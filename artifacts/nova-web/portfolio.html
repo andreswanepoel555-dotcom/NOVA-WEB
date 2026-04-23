@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Nova Web Solutions</title>
+  <meta name="description" content="A selection of recent work from Nova Web Solutions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="./index.html" class="logo">
+        <span class="logo-nova">NOVA</span><span class="logo-web">WEB</span><span class="logo-dot">.</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./services.html">Services</a>
+        <a href="./portfolio.html" class="active">Portfolio</a>
+        <a href="./contact.html" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+    <div class="container reveal">
+      <span class="eyebrow">// Selected Work</span>
+      <h1>Real projects. <span class="accent glow">Real results.</span></h1>
+      <p class="lead">A glimpse into recent websites we've designed, built and launched.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="portfolio-grid">
+
+        <article class="project reveal">
+          <div class="project-visual">
+            <div class="project-window">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="project-glow tracers"></div>
+            <div class="project-title-overlay">tracers-sa.co.za</div>
+          </div>
+          <div class="project-body">
+            <span class="tag">Investigations</span>
+            <h3>Tracers SA</h3>
+            <p>A modern, trust-driven website for a leading South African tracing &amp; investigation firm.</p>
+            <a href="https://www.tracers-sa.co.za" target="_blank" rel="noopener" class="btn btn-primary">View Website &rarr;</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-visual">
+            <div class="project-window">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="project-glow detectives"></div>
+            <div class="project-title-overlay">detectives-sa.co.za</div>
+          </div>
+          <div class="project-body">
+            <span class="tag">Private Investigation</span>
+            <h3>Detectives SA</h3>
+            <p>A bold, conversion-focused website for a premier private detective agency.</p>
+            <a href="https://www.detectives-sa.co.za" target="_blank" rel="noopener" class="btn btn-primary">View Website &rarr;</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-visual">
+            <div class="project-window">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="project-glow saas"></div>
+            <div class="project-title-overlay">orbit-saas.io</div>
+          </div>
+          <div class="project-body">
+            <span class="tag">SaaS Platform</span>
+            <h3>Orbit SaaS</h3>
+            <p>A futuristic marketing site and onboarding flow for a productivity SaaS startup.</p>
+            <a href="#" class="btn btn-primary">View Website &rarr;</a>
+          </div>
+        </article>
+
+        <article class="project reveal">
+          <div class="project-visual">
+            <div class="project-window">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="project-glow studio"></div>
+            <div class="project-title-overlay">helio-studio.com</div>
+          </div>
+          <div class="project-body">
+            <span class="tag">Creative Agency</span>
+            <h3>Helio Studio</h3>
+            <p>A bold portfolio site for a creative agency with stunning scroll-driven motion.</p>
+            <a href="#" class="btn btn-primary">View Website &rarr;</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container cta-band reveal">
+      <h2>Want to be our <span class="accent glow">next case study</span>?</h2>
+      <a href="./contact.html" class="btn btn-primary">Start a Project</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="./index.html" class="logo">
+          <span class="logo-nova">NOVA</span><span class="logo-web">WEB</span><span class="logo-dot">.</span>
+        </a>
+        <p class="footer-tag">Building powerful digital experiences since 2019.</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About</a></li>
+          <li><a href="./services.html">Services</a></li>
+          <li><a href="./portfolio.html">Portfolio</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <ul class="social">
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Dribbble</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Nova Web Solutions. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
