@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "K_xH256UMICtI7ddO1oop"
+uri = "file://nova-web-static.tar.gz"
+type = "unspecified"
+title = "Nova Web Solutions — complete static site (extract & host anywhere)"
