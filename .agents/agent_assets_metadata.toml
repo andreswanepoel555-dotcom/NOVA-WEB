@@ -6,3 +6,9 @@ id = "K_xH256UMICtI7ddO1oop"
 uri = "file://nova-web-static.tar.gz"
 type = "unspecified"
 title = "Nova Web Solutions — complete static site (extract & host anywhere)"
+
+[[outputs]]
+id = "RA3cHFr46z-ewJ9J8nDXF"
+uri = "file://nova-web-static.zip"
+type = "unspecified"
+title = "Nova Web Solutions — complete static site (zip, ready to upload)"
