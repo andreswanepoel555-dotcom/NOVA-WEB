@@ -402,6 +402,42 @@ p { color: var(--muted); }
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
 }
+.cards.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .cards.three { grid-template-columns: 1fr; }
+}
+
+/* Locations grid */
+.locations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.loc {
+  background: var(--bg-elev);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r);
+  padding: 22px 22px 24px;
+  display: grid; gap: 6px;
+  transition: border-color .3s var(--t), transform .3s var(--t), box-shadow .3s var(--t);
+}
+.loc:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 0 22px var(--accent-glow-soft);
+}
+.loc strong {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .95rem;
+  letter-spacing: 1px;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent-glow-soft);
+}
+.loc span { color: var(--muted); font-size: .92rem; }
+
+.cta-band p { margin: 6px auto 22px; max-width: 640px; }
 .card {
   position: relative;
   background: var(--bg-elev);
