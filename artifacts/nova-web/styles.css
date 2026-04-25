@@ -885,9 +885,102 @@ p { color: var(--muted); }
   .reveal { opacity: 1; transform: none; }
 }
 
+/* =================== FORM SELECT =================== */
+.field select {
+  width: 100%;
+  padding: 14px 40px 14px 16px;
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color .25s var(--t), box-shadow .25s var(--t), background .25s var(--t);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239aa3ad' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(57,255,20,.12), 0 0 18px var(--accent-glow-soft);
+  background-color: #07090d;
+}
+.field select option { background: var(--bg-elev); color: var(--text); }
+.field.invalid select { border-color: #ff4d4d; box-shadow: 0 0 0 3px rgba(255,77,77,.15); }
+
+/* =================== FORM ROW (two-column) =================== */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* =================== CONTACT MINI SECTION (homepage) =================== */
+.contact-mini-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: start;
+}
+.contact-mini-copy h2 { margin-bottom: 14px; }
+.contact-mini-copy > p { margin-bottom: 0; }
+
+.contact-chips {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-top: 28px;
+}
+.contact-chip {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: .95rem;
+  transition: border-color .25s var(--t), transform .25s var(--t), box-shadow .25s var(--t), color .25s var(--t);
+}
+.contact-chip svg { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; }
+.contact-chip:hover {
+  border-color: var(--accent);
+  transform: translateX(5px);
+  box-shadow: 0 0 18px var(--accent-glow-soft);
+  color: var(--accent);
+}
+.contact-chip-wa svg { color: #25d366; }
+.contact-chip-wa:hover { border-color: #25d366; box-shadow: 0 0 18px rgba(37,211,102,.25); color: #25d366; }
+
+/* =================== WHATSAPP FLOATING BUTTON =================== */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px; right: 28px; z-index: 990;
+  width: 58px; height: 58px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(37,211,102,.45);
+  transition: transform .3s var(--t), box-shadow .3s var(--t);
+  animation: waPulse 2.8s ease-in-out infinite;
+}
+.whatsapp-fab svg { width: 30px; height: 30px; }
+.whatsapp-fab:hover {
+  transform: scale(1.12) translateY(-3px);
+  box-shadow: 0 8px 36px rgba(37,211,102,.65);
+  animation: none;
+}
+@keyframes waPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.45); }
+  50% { box-shadow: 0 4px 30px rgba(37,211,102,.7), 0 0 0 10px rgba(37,211,102,.1); }
+}
+@media (prefers-reduced-motion: reduce) { .whatsapp-fab { animation: none; } }
+
 /* =================== RESPONSIVE =================== */
 @media (max-width: 900px) {
-  .two-col, .contact-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .two-col, .contact-wrap, .contact-mini-wrap { grid-template-columns: 1fr; gap: 36px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .portfolio-grid.two-cols { grid-template-columns: 1fr; }
 }
@@ -919,4 +1012,7 @@ p { color: var(--muted); }
   .section { padding: 80px 0; }
   .footer-grid { grid-template-columns: 1fr; }
   .marquee-track { font-size: 1.1rem; gap: 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .whatsapp-fab { bottom: 18px; right: 18px; width: 52px; height: 52px; }
+  .whatsapp-fab svg { width: 26px; height: 26px; }
 }

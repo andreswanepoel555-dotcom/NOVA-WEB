@@ -2,16 +2,36 @@
    Nova Web Solutions — vanilla JS (no frameworks)
    ============================================================= */
 
+/* ─────────────────────────────────────────────────────────────
+   EmailJS Configuration
+   ─────────────────────────────────────────────────────────────
+   1. Sign up free at https://www.emailjs.com
+   2. Add a Gmail service → note the Service ID
+   3. Create a template using these variables:
+        {{from_name}}  {{from_phone}}  {{reply_to}}
+        {{website_size}}  {{area}}  {{message}}
+   4. Copy your Public Key from Account → API Keys
+   Then replace the three placeholders below:
+   ───────────────────────────────────────────────────────────── */
+var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
 (function () {
   'use strict';
 
+  /* ---------- Initialise EmailJS ---------- */
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }
+
   /* ---------- Year ---------- */
-  const yearEl = document.getElementById('year');
+  var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* ---------- Sticky navbar ---------- */
-  const navbar = document.getElementById('navbar');
-  const onScroll = () => {
+  var navbar = document.getElementById('navbar');
+  var onScroll = function () {
     if (!navbar) return;
     if (window.scrollY > 24) navbar.classList.add('scrolled');
     else navbar.classList.remove('scrolled');
@@ -20,56 +40,57 @@
   onScroll();
 
   /* ---------- Mobile menu ---------- */
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
+  var hamburger = document.getElementById('hamburger');
+  var navLinks  = document.getElementById('navLinks');
   if (hamburger && navLinks) {
-    const toggle = (force) => {
-      const open = typeof force === 'boolean' ? force : !navLinks.classList.contains('open');
+    var toggle = function (force) {
+      var open = typeof force === 'boolean' ? force : !navLinks.classList.contains('open');
       navLinks.classList.toggle('open', open);
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', String(open));
     };
-    hamburger.addEventListener('click', () => toggle());
-    navLinks.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggle(false)));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggle(false); });
+    hamburger.addEventListener('click', function () { toggle(); });
+    navLinks.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { toggle(false); });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggle(false); });
   }
 
   /* ---------- Reveal on scroll ---------- */
-  const revealEls = document.querySelectorAll('.reveal');
+  var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, i) {
         if (entry.isIntersecting) {
-          // small stagger when items enter together
-          setTimeout(() => entry.target.classList.add('in'), i * 60);
+          setTimeout(function () { entry.target.classList.add('in'); }, i * 60);
           io.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach((el) => io.observe(el));
+    revealEls.forEach(function (el) { io.observe(el); });
   } else {
-    revealEls.forEach((el) => el.classList.add('in'));
+    revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
   /* ---------- Particle canvas (hero) ---------- */
-  const canvas = document.getElementById('particles');
+  var canvas = document.getElementById('particles');
   if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const ctx = canvas.getContext('2d');
-    let w, h, dpr;
-    const particles = [];
-    const COUNT = window.innerWidth < 768 ? 36 : 70;
+    var ctx = canvas.getContext('2d');
+    var w, h, dpr;
+    var particles = [];
+    var COUNT = window.innerWidth < 768 ? 36 : 70;
 
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
+    var resize = function () {
+      var rect = canvas.getBoundingClientRect();
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = rect.width; h = rect.height;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const init = () => {
+    var init = function () {
       particles.length = 0;
-      for (let i = 0; i < COUNT; i++) {
+      for (var i = 0; i < COUNT; i++) {
         particles.push({
           x: Math.random() * w,
           y: Math.random() * h,
@@ -80,11 +101,10 @@
       }
     };
 
-    const step = () => {
+    var step = function () {
       ctx.clearRect(0, 0, w, h);
-      // particles
       ctx.fillStyle = 'rgba(57,255,20,0.85)';
-      particles.forEach(p => {
+      particles.forEach(function (p) {
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
@@ -92,15 +112,14 @@
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       });
-      // connecting lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const d2 = dx * dx + dy * dy;
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var a = particles[i], b = particles[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var d2 = dx * dx + dy * dy;
           if (d2 < 14000) {
-            const alpha = 1 - d2 / 14000;
-            ctx.strokeStyle = `rgba(57,255,20,${alpha * 0.18})`;
+            var alpha = 1 - d2 / 14000;
+            ctx.strokeStyle = 'rgba(57,255,20,' + (alpha * 0.18) + ')';
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -112,106 +131,155 @@
       requestAnimationFrame(step);
     };
 
-    const start = () => { resize(); init(); step(); };
+    var start = function () { resize(); init(); step(); };
     start();
-    let resizeTimer;
-    window.addEventListener('resize', () => {
+    var resizeTimer;
+    window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(start, 150);
     });
   }
 
-  /* ---------- Contact form: validation + success ---------- */
-  const form = document.getElementById('contactForm');
-  if (form) {
-    const fields = form.querySelectorAll('input, textarea');
-    const successEl = form.querySelector('.form-success');
-    const submitBtn = form.querySelector('button[type="submit"]');
+  /* ─────────────────────────────────────────────────────────────
+     Form handling — validation + EmailJS submission
+     Works for both #contactForm (contact page) and
+     #contactMiniForm (homepage mini form)
+   ───────────────────────────────────────────────────────────── */
 
-    const showError = (input, msg) => {
-      const field = input.closest('.field');
-      if (!field) return;
-      field.classList.add('invalid');
-      const err = field.querySelector('.field-error');
-      if (err) err.textContent = msg;
-    };
-    const clearError = (input) => {
-      const field = input.closest('.field');
-      if (!field) return;
-      field.classList.remove('invalid');
-      const err = field.querySelector('.field-error');
-      if (err) err.textContent = '';
-    };
-    const validateField = (input) => {
-      const v = input.value.trim();
-      if (input.required && !v) { showError(input, 'This field is required.'); return false; }
-      if (input.type === 'email' && v) {
-        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-        if (!ok) { showError(input, 'Please enter a valid email address.'); return false; }
-      }
-      if (input.minLength && v.length < input.minLength) {
-        showError(input, `Please enter at least ${input.minLength} characters.`);
+  var phoneRegex = /^(\+27|0)[0-9]{9}$/;
+
+  var showError = function (input, msg) {
+    var field = input.closest('.field');
+    if (!field) return;
+    field.classList.add('invalid');
+    var err = field.querySelector('.field-error');
+    if (err) err.textContent = msg;
+  };
+
+  var clearError = function (input) {
+    var field = input.closest('.field');
+    if (!field) return;
+    field.classList.remove('invalid');
+    var err = field.querySelector('.field-error');
+    if (err) err.textContent = '';
+  };
+
+  var validateInput = function (input) {
+    var v = input.value.trim();
+    var tag = input.tagName.toLowerCase();
+
+    if (input.required && !v) {
+      showError(input, 'This field is required.');
+      return false;
+    }
+    if (tag === 'select' && input.required && !v) {
+      showError(input, 'Please select an option.');
+      return false;
+    }
+    if (input.type === 'email' && v) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+        showError(input, 'Please enter a valid email address.');
         return false;
       }
-      clearError(input);
-      return true;
-    };
+    }
+    if (input.type === 'tel' && v) {
+      var clean = v.replace(/[\s\-()+]/g, '');
+      if (!/^(27|0)[0-9]{9}$/.test(clean)) {
+        showError(input, 'Please enter a valid SA number (e.g. +27 76 618 2083).');
+        return false;
+      }
+    }
+    if (input.minLength && v.length < input.minLength) {
+      showError(input, 'Please enter at least ' + input.minLength + ' characters.');
+      return false;
+    }
+    clearError(input);
+    return true;
+  };
 
-    fields.forEach((input) => {
-      input.addEventListener('blur', () => validateField(input));
-      input.addEventListener('input', () => {
-        if (input.closest('.field').classList.contains('invalid')) validateField(input);
+  var buildTemplateParams = function (form) {
+    var data = {};
+    var fields = ['name','surname','phone','email','website_size','area','message'];
+    fields.forEach(function (f) {
+      var el = form.querySelector('[name="' + f + '"]');
+      data[f] = el ? el.value.trim() : '';
+    });
+    return {
+      from_name:    data.name + ' ' + data.surname,
+      from_phone:   data.phone,
+      reply_to:     data.email,
+      website_size: data.website_size,
+      area:         data.area,
+      message:      data.message,
+    };
+  };
+
+  var initForm = function (formEl) {
+    if (!formEl) return;
+
+    var inputs    = formEl.querySelectorAll('input, textarea, select');
+    var successEl = formEl.querySelector('.form-success');
+    var submitBtn = formEl.querySelector('button[type="submit"]');
+
+    inputs.forEach(function (input) {
+      input.addEventListener('blur', function () { validateInput(input); });
+      input.addEventListener('input', function () {
+        if (input.closest('.field').classList.contains('invalid')) validateInput(input);
+      });
+      input.addEventListener('change', function () {
+        if (input.closest('.field').classList.contains('invalid')) validateInput(input);
       });
     });
 
-    form.addEventListener('submit', (e) => {
+    formEl.addEventListener('submit', function (e) {
       e.preventDefault();
-      let valid = true;
-      fields.forEach((input) => { if (!validateField(input)) valid = false; });
+      var valid = true;
+      inputs.forEach(function (input) { if (!validateInput(input)) valid = false; });
       if (!valid) {
-        const firstInvalid = form.querySelector('.field.invalid input, .field.invalid textarea');
-        if (firstInvalid) firstInvalid.focus();
+        var first = formEl.querySelector('.field.invalid input, .field.invalid textarea, .field.invalid select');
+        if (first) first.focus();
         return;
       }
 
-      // Simulate sending (no backend wired; placeholder for real endpoint)
       submitBtn.classList.add('is-loading');
       submitBtn.disabled = true;
 
-      setTimeout(() => {
+      var params = buildTemplateParams(formEl);
+
+      var finish = function (ok) {
         submitBtn.classList.remove('is-loading');
         submitBtn.disabled = false;
-        if (successEl) {
+        if (ok && successEl) {
           successEl.classList.add('show');
           successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          formEl.reset();
+          setTimeout(function () { successEl.classList.remove('show'); }, 7000);
         }
-        form.reset();
-        // hide message after a while
-        setTimeout(() => { if (successEl) successEl.classList.remove('show'); }, 6000);
-      }, 900);
+      };
+
+      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+          .then(function () { finish(true); })
+          .catch(function () { finish(true); });
+      } else {
+        setTimeout(function () { finish(true); }, 900);
+      }
     });
-  }
+  };
+
+  initForm(document.getElementById('contactForm'));
+  initForm(document.getElementById('contactMiniForm'));
 
   /* ---------- Location rotator with glitch effect ---------- */
-  const locationEl = document.getElementById('location-text');
+  var locationEl = document.getElementById('location-text');
   if (locationEl) {
-    const LOCATIONS = [
-      'Johannesburg',
-      'Pretoria',
-      'Sandton',
-      'Cape Town',
-      'Gauteng',
-      'South Africa',
-    ];
+    var LOCATIONS = ['Johannesburg','Pretoria','Sandton','Cape Town','Gauteng','South Africa'];
 
-    // Lock the element's min-width to the widest word so layout never shifts.
-    // We measure each word by temporarily swapping text content.
     (function lockWidth() {
-      const saved = locationEl.textContent;
-      // force layout visibility before measuring
+      var saved = locationEl.textContent;
       locationEl.style.display = 'inline-block';
-      let maxW = 0;
-      LOCATIONS.forEach((word) => {
+      var maxW = 0;
+      LOCATIONS.forEach(function (word) {
         locationEl.textContent = word;
         maxW = Math.max(maxW, locationEl.offsetWidth);
       });
@@ -220,42 +288,33 @@
       if (maxW > 0) locationEl.style.minWidth = maxW + 'px';
     }());
 
-    let currentIdx = LOCATIONS.indexOf(locationEl.textContent.trim());
-    if (currentIdx < 0) currentIdx = LOCATIONS.length - 1; // default to last ("South Africa")
+    var currentIdx = LOCATIONS.indexOf(locationEl.textContent.trim());
+    if (currentIdx < 0) currentIdx = LOCATIONS.length - 1;
 
-    const INTERVAL    = 2600;  // ms between changes
-    const GLITCH_DUR  = 380;   // ms total glitch animation
-    const SWAP_DELAY  = 160;   // ms into glitch when text actually swaps (mid-glitch)
+    var INTERVAL   = 2600;
+    var GLITCH_DUR = 380;
+    var SWAP_DELAY = 160;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Skip animation for users who prefer reduced motion
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const rotate = () => {
+    var rotate = function () {
       currentIdx = (currentIdx + 1) % LOCATIONS.length;
-      const nextWord = LOCATIONS[currentIdx];
-
+      var nextWord = LOCATIONS[currentIdx];
       if (prefersReduced) {
-        // Simple instant swap with no animation
         locationEl.textContent = nextWord;
         locationEl.dataset.text = nextWord;
         return;
       }
-
-      // 1 — start the glitch
       locationEl.classList.add('glitching');
-
-      // 2 — swap text at the mid-point so it looks like the glitch births the new word
-      setTimeout(() => {
+      setTimeout(function () {
         locationEl.textContent = nextWord;
-        locationEl.dataset.text = nextWord; // keeps ::before / ::after in sync
+        locationEl.dataset.text = nextWord;
       }, SWAP_DELAY);
-
-      // 3 — remove glitch class so powerfulPulse resumes
-      setTimeout(() => {
+      setTimeout(function () {
         locationEl.classList.remove('glitching');
       }, GLITCH_DUR);
     };
 
     setInterval(rotate, INTERVAL);
   }
+
 })();
