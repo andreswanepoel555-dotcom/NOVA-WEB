@@ -43,11 +43,14 @@ var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
   var hamburger = document.getElementById('hamburger');
   var navLinks  = document.getElementById('navLinks');
   if (hamburger && navLinks) {
+    var navbar = document.querySelector('.navbar');
     var toggle = function (force) {
       var open = typeof force === 'boolean' ? force : !navLinks.classList.contains('open');
       navLinks.classList.toggle('open', open);
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+      if (navbar) navbar.classList.toggle('menu-open', open);
     };
     hamburger.addEventListener('click', function () { toggle(); });
     navLinks.querySelectorAll('a').forEach(function (a) {
