@@ -191,4 +191,71 @@
       }, 900);
     });
   }
+
+  /* ---------- Location rotator with glitch effect ---------- */
+  const locationEl = document.getElementById('location-text');
+  if (locationEl) {
+    const LOCATIONS = [
+      'Johannesburg',
+      'Pretoria',
+      'Sandton',
+      'Cape Town',
+      'Gauteng',
+      'South Africa',
+    ];
+
+    // Lock the element's min-width to the widest word so layout never shifts.
+    // We measure each word by temporarily swapping text content.
+    (function lockWidth() {
+      const saved = locationEl.textContent;
+      // force layout visibility before measuring
+      locationEl.style.display = 'inline-block';
+      let maxW = 0;
+      LOCATIONS.forEach((word) => {
+        locationEl.textContent = word;
+        maxW = Math.max(maxW, locationEl.offsetWidth);
+      });
+      locationEl.textContent = saved;
+      locationEl.dataset.text = saved;
+      if (maxW > 0) locationEl.style.minWidth = maxW + 'px';
+    }());
+
+    let currentIdx = LOCATIONS.indexOf(locationEl.textContent.trim());
+    if (currentIdx < 0) currentIdx = LOCATIONS.length - 1; // default to last ("South Africa")
+
+    const INTERVAL    = 2600;  // ms between changes
+    const GLITCH_DUR  = 380;   // ms total glitch animation
+    const SWAP_DELAY  = 160;   // ms into glitch when text actually swaps (mid-glitch)
+
+    // Skip animation for users who prefer reduced motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const rotate = () => {
+      currentIdx = (currentIdx + 1) % LOCATIONS.length;
+      const nextWord = LOCATIONS[currentIdx];
+
+      if (prefersReduced) {
+        // Simple instant swap with no animation
+        locationEl.textContent = nextWord;
+        locationEl.dataset.text = nextWord;
+        return;
+      }
+
+      // 1 — start the glitch
+      locationEl.classList.add('glitching');
+
+      // 2 — swap text at the mid-point so it looks like the glitch births the new word
+      setTimeout(() => {
+        locationEl.textContent = nextWord;
+        locationEl.dataset.text = nextWord; // keeps ::before / ::after in sync
+      }, SWAP_DELAY);
+
+      // 3 — remove glitch class so powerfulPulse resumes
+      setTimeout(() => {
+        locationEl.classList.remove('glitching');
+      }, GLITCH_DUR);
+    };
+
+    setInterval(rotate, INTERVAL);
+  }
 })();
