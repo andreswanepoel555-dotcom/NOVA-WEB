@@ -2,28 +2,8 @@
    Nova Web Solutions — vanilla JS (no frameworks)
    ============================================================= */
 
-/* ─────────────────────────────────────────────────────────────
-   EmailJS Configuration
-   ─────────────────────────────────────────────────────────────
-   1. Sign up free at https://www.emailjs.com
-   2. Add a Gmail service → note the Service ID
-   3. Create a template using these variables:
-        {{from_name}}  {{from_phone}}  {{reply_to}}
-        {{website_size}}  {{area}}  {{message}}
-   4. Copy your Public Key from Account → API Keys
-   Then replace the three placeholders below:
-   ───────────────────────────────────────────────────────────── */
-var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
-var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-
 (function () {
   'use strict';
-
-  /* ---------- Initialise EmailJS ---------- */
-  if (typeof emailjs !== 'undefined') {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }
 
   /* ---------- Year ---------- */
   var yearEl = document.getElementById('year');
@@ -200,21 +180,13 @@ var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
     return true;
   };
 
-  var buildTemplateParams = function (form) {
-    var data = {};
-    var fields = ['name','surname','phone','email','website_size','area','message'];
-    fields.forEach(function (f) {
-      var el = form.querySelector('[name="' + f + '"]');
-      data[f] = el ? el.value.trim() : '';
+  var encodeFormData = function (form) {
+    var pairs = [];
+    var formData = new FormData(form);
+    formData.forEach(function (value, key) {
+      pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
     });
-    return {
-      from_name:    data.name + ' ' + data.surname,
-      from_phone:   data.phone,
-      reply_to:     data.email,
-      website_size: data.website_size,
-      area:         data.area,
-      message:      data.message,
-    };
+    return pairs.join('&');
   };
 
   var initForm = function (formEl) {
@@ -247,8 +219,6 @@ var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
       submitBtn.classList.add('is-loading');
       submitBtn.disabled = true;
 
-      var params = buildTemplateParams(formEl);
-
       var finish = function (ok) {
         submitBtn.classList.remove('is-loading');
         submitBtn.disabled = false;
@@ -260,13 +230,13 @@ var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
         }
       };
 
-      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
-          .then(function () { finish(true); })
-          .catch(function () { finish(true); });
-      } else {
-        setTimeout(function () { finish(true); }, 900);
-      }
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData(formEl)
+      })
+        .then(function () { finish(true); })
+        .catch(function () { finish(true); });
     });
   };
 
