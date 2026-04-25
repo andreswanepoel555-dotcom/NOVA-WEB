@@ -1,0 +1,35 @@
+[build]
+  publish = "nova-web-static"
+  command  = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+
+[[redirects]]
+  from   = "/web-design-johannesburg"
+  to     = "/services.html"
+  status = 200
+
+[[redirects]]
+  from   = "/web-design-pretoria"
+  to     = "/services.html"
+  status = 200
+
+[[redirects]]
+  from   = "/web-design-sandton"
+  to     = "/services.html"
+  status = 200
+
+[[redirects]]
+  from   = "/web-design-cape-town"
+  to     = "/services.html"
+  status = 200
+
+[[redirects]]
+  from   = "/web-design-south-africa"
+  to     = "/services.html"
+  status = 200
